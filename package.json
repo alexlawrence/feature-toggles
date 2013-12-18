@@ -1,0 +1,13 @@
+{
+  "name": "feature-toggles",
+  "version": "1.1.0",
+  "description": "Feature Toggles for Node.js",
+  "main": "index.js",
+  "repository": "https://github.com/alexlawrence/feature-toggles.git",
+  "author": "Alex Lawrence",
+  "license": "MIT",
+  "devDependencies": {
+      "grunt": "0.4.1",
+      "jasmine-node": "1.7.0"
+  }
+}
