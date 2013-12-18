@@ -6,15 +6,15 @@ for Node.js (also called feature flipping).
 
 ### Features
 
-This module offers one additional functionality over using a simple plain JavaScript object:
+This module offers one additional feature over using a simple plain JavaScript object:
 computed feature toggle values in form of functions.
 
-### Boolean toggle values
+### Simple toggle values
 
-Example for using simple boolean values:
+Example for using plain values:
 
 ```javascript
-// define your toggles
+// define toggles
 var toggles = {foo: true, bar: false};
 
 // load them into the module
@@ -29,14 +29,14 @@ if (featureToggles.isFeatureEnabled('foo') {
 
 ### Computed toggle values
 
-To use computed values you simply provide a function for the value of a feature toggle.
-Whenever you check if the feature is enabled the provided function will be invoked.
-All arguments passed to the `isFeatureEnabled` call except the first one are passed on to your function.
+For computed values provide a function for the value of a feature toggle.
+Whenever checking if the feature is enabled the provided function will be invoked.
+All arguments passed to the `isFeatureEnabled()` call except the first one are passed on to the function.
 
 Example:
 
 ```javascript
-// define your computed toggle
+// define a computed toggle
 var toggles = {
     foo: function(a, b) {
         return (a == 'a' && b == 'b');
@@ -53,7 +53,7 @@ if (featureToggles.isFeatureEnabled('foo', 'a', 'b') {
 }
 ```
 
-If a function throws an exception `isFeatureEnabled()` will simply return false to prevent runtime crashes.
+If the function throws an exception the `isFeatureEnabled()` call will return false to prevent runtime crashes.
 
 #### Advanced examples (pseudo code)
 
