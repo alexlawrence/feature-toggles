@@ -22,7 +22,7 @@ var featureToggles = require('feature-toggles');
 featureToggles.load(toggles);
 
 // check if a feature is enabled
-if (featureToggles.isFeatureEnabled('foo') {
+if (featureToggles.isFeatureEnabled('foo')) {
     // do something
 }
 ```
