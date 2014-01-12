@@ -19,3 +19,10 @@ exports.isFeatureEnabled = function(name) {
     }
     return toggleValue === true;
 };
+
+exports.middleware = function(request, response, next) {
+    response.locals.isFeatureEnabled = function(name) {
+        return exports.isFeatureEnabled(name, request, response);
+    };
+    next();
+};

@@ -69,7 +69,7 @@ var toggles = {
 var featureToggles = require('feature-toggles');
 featureToggles.load(toggles);
 
-app.get('/', function() {
+app.get('/', function(request, response) {
     if (featureToggles.isFeatureEnabled('foo', request)) {
         // do something
     }
@@ -92,6 +92,31 @@ featureToggles.load(toggles);
 if (featureToggles.isFeatureEnabled('foo', request)) {
     // do something
 }
+```
+
+#### Express integration
+
+Use the middleware to easily toggle features per request.
+This way a special version of `isFeatureEnabled()` is exposed to all views (res.locals).
+Computed toggles will automatically receive the current request and response as arguments.
+
+```javascript
+var toggles = {
+    foo: function(request, response) {
+        return request.param('enableFoo');
+    }
+}
+```
+
+```javascript
+var application = express();
+
+application.use(featureToggles.middleware);
+```
+
+```jade
+- if (isFeatureEnabled('foo'))
+    Foo is enabled
 ```
 
 ### Alternative modules
