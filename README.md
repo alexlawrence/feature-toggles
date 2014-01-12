@@ -22,7 +22,7 @@ var featureToggles = require('feature-toggles');
 featureToggles.load(toggles);
 
 // check if a feature is enabled
-if (featureToggles.isFeatureEnabled('foo') {
+if (featureToggles.isFeatureEnabled('foo')) {
     // do something
 }
 ```
@@ -80,7 +80,7 @@ Enabling a toggle based on a certain date:
 
 ```javascript
 var toggles = {
-    foo: function(request) {
+    foo: function() {
         var date = new Date();
         return date.getDate() > 15;
     }
@@ -89,7 +89,7 @@ var toggles = {
 var featureToggles = require('feature-toggles');
 featureToggles.load(toggles);
 
-if (featureToggles.isFeatureEnabled('foo', request)) {
+if (featureToggles.isFeatureEnabled('foo')) {
     // do something
 }
 ```
