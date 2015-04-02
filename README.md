@@ -2,12 +2,12 @@
 
 Simple implementation of
 [feature toggles](http://martinfowler.com/bliki/FeatureToggle.html)
-for Node.js (also called feature flipping).
+for JavaScript (also called feature flipping).
 
 ### Features
 
-This module offers one additional feature over using a simple plain JavaScript object:
-computed feature toggle values in form of functions.
+This module encapsulates all calls to check if a certain feature (toggle) is enabled.
+Furthermore it provides the possibility to have computed feature toggle values in form of functions.
 
 ### Simple toggle values
 

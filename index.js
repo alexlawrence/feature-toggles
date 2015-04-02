@@ -1,28 +1,29 @@
-var _toggles = {};
+var featureToggles = {
+    _toggles: {},
+    load: function(toggles) {
+        this._toggles = toggles;
+    },
 
-var slice = Array.prototype.slice;
-
-exports.load = function(toggles) {
-    _toggles = toggles;
-};
-
-exports.isFeatureEnabled = function(name) {
-    var toggleValue = _toggles[name];
-    if (typeof toggleValue == 'function') {
-        try {
-            var toggleArguments = slice.call(arguments, 1);
-            toggleValue = toggleValue.apply(this, toggleArguments);
+    isFeatureEnabled: function(featureName) {
+        var toggle = this._toggles[featureName];
+        if (typeof toggle == 'function') {
+            try {
+                var toggleArguments = slice.call(arguments, 1);
+                toggle = toggle.apply(this, toggleArguments);
+            }
+            catch (error) {
+                return false;
+            }
         }
-        catch (error) {
-            return false;
-        }
+        return toggle === true;
+    },
+
+    middleware: function(request, response, next) {
+        response.locals.isFeatureEnabled = function(featureName) {
+            return featureToggles.isFeatureEnabled(featureName, request, response);
+        };
+        next();
     }
-    return toggleValue === true;
 };
 
-exports.middleware = function(request, response, next) {
-    response.locals.isFeatureEnabled = function(name) {
-        return exports.isFeatureEnabled(name, request, response);
-    };
-    next();
-};
+module.exports = featureToggles;
