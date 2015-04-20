@@ -150,6 +150,18 @@ describe('when checking if a feature is enabled', function() {
 
     });
 
+    describe('which has a function with arguments as value which returns true', function() {
+
+        beforeEach(function() {
+            featureToggles.load({foo: function(a) { var b = 'bar'; return a === b; }})
+        });
+
+        it('should return true', function() {
+            expect(featureToggles.isFeatureEnabled('foo', 'bar')).toBeTruthy();
+        });
+
+    });
+
 });
 
 describe('when checking multiple times if a feature is enabled which has a function as value', function() {

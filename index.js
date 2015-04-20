@@ -8,7 +8,7 @@ var featureToggles = {
         var toggle = this._toggles[featureName];
         if (typeof toggle == 'function') {
             try {
-                var toggleArguments = slice.call(arguments, 1);
+                var toggleArguments = Array.prototype.slice.call(arguments, 1);
                 toggle = toggle.apply(this, toggleArguments);
             }
             catch (error) {
