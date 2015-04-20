@@ -1,6 +1,6 @@
 {
   "name": "feature-toggles",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Feature Toggles for JavaScript",
   "main": "index.js",
   "repository": "https://github.com/alexlawrence/feature-toggles.git",
