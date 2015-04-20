@@ -7,7 +7,7 @@
   "author": "Alex Lawrence",
   "license": "MIT",
   "devDependencies": {
-      "grunt": "0.4.1",
-      "jasmine-node": "1.7.0"
+      "grunt": "0.4.5",
+      "jasmine-node": "1.14.5"
   }
 }
