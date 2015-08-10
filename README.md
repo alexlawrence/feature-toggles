@@ -123,3 +123,4 @@ application.use(featureToggles.middleware);
 
 * https://github.com/nomiddlename/flipper
 * https://github.com/bigodines/feature-flipper-js
+* https://github.com/ericelliott/feature-toggle
