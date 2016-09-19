@@ -46,6 +46,30 @@ describe('when checking if a feature is enabled', function() {
 
     });
 
+    describe('by using an array where one is true', function() {
+
+        beforeEach(function() {
+            featureToggles.load({foo: true, bar: false});
+        });
+
+        it('should return false', function() {
+            expect(featureToggles.isFeatureEnabled(['foo', 'bar'])).toBeTruthy();
+        });
+
+    });
+
+    describe('by using an array where none is true', function() {
+
+        beforeEach(function() {
+            featureToggles.load({foo: false, bar: false});
+        });
+
+        it('should return false', function() {
+            expect(featureToggles.isFeatureEnabled(['foo', 'bar'])).toBeFalsy();
+        });
+
+    });
+
     describe('which has a value of 0', function() {
 
         beforeEach(function() {

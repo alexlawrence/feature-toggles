@@ -1,3 +1,17 @@
+function _isFeatureEnabled(featureName) {
+    var toggle = this._toggles[featureName];
+    if (typeof toggle == 'function') {
+        try {
+            var toggleArguments = Array.prototype.slice.call(arguments, 1);
+            toggle = toggle.apply(this, toggleArguments);
+        }
+        catch (error) {
+            return false;
+        }
+    }
+    return toggle === true;
+}
+
 var featureToggles = {
     _toggles: {},
     load: function(toggles) {
@@ -5,17 +19,10 @@ var featureToggles = {
     },
 
     isFeatureEnabled: function(featureName) {
-        var toggle = this._toggles[featureName];
-        if (typeof toggle == 'function') {
-            try {
-                var toggleArguments = Array.prototype.slice.call(arguments, 1);
-                toggle = toggle.apply(this, toggleArguments);
-            }
-            catch (error) {
-                return false;
-            }
+        if (Array.isArray(featureName)) {
+          return featureName.some(_isFeatureEnabled, this);
         }
-        return toggle === true;
+        return _isFeatureEnabled.apply(this, arguments);
     },
 
     middleware: function(request, response, next) {

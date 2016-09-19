@@ -25,6 +25,11 @@ featureToggles.load(toggles);
 if (featureToggles.isFeatureEnabled('foo')) {
     // do something
 }
+
+// check if any of the features is enabled
+if (featureToggles.isFeatureEnabled(['foo', 'bar'])) {
+    // do something
+}
 ```
 
 ### Computed toggle values
